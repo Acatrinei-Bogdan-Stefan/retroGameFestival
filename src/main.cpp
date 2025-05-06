@@ -1,6 +1,6 @@
 #include <raylib.h>
 #include "game.hpp"
-#include "laser.hpp"
+// #include "laser.hpp"
 
 int main() 
 {
@@ -9,11 +9,11 @@ int main()
     const int windowWidth = 750;
     const int windowHeight = 700;
     
-    InitWindow(windowWidth, windowHeight, "C++ Space Invaders");
+    InitWindow(windowWidth, windowHeight, "C++ Game Festival");
     SetTargetFPS(60);
 
     Game game;
-    Laser laser = Laser({100,100},7);
+    // Laser laser = Laser({100,100},7);
     
     while (!WindowShouldClose())
     {
@@ -26,7 +26,8 @@ int main()
             ClearBackground(grey);
 
             game.Draw();
-            laser.Draw();
+            DrawRectangle(100,100,100,100,WHITE);
+            // laser.Draw();
         
         EndDrawing();
     }

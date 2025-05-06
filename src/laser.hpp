@@ -1,6 +1,6 @@
 #pragma once
 #include <raylib.h>
-#include "spaceship.hpp"
+#include "player.hpp"
 
 class Laser
 {

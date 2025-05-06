@@ -1,11 +1,11 @@
 #pragma once
 #include <raylib.h>
-#include "spaceship.hpp"
+#include "player.hpp"
 
 class Game
 {
 private:
-  Spaceship spaceship;
+  Player player;
 public:
   Game();
   ~Game();
