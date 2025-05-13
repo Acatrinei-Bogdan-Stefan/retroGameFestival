@@ -16,6 +16,7 @@ Player::~Player()
 void Player::Draw()
 {
     DrawTextureV(image,position,WHITE);
+    DrawCircle(int centerX, int centerY, float radius, Color color);
 }
 
 void Player::MoveLeft()

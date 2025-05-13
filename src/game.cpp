@@ -14,6 +14,7 @@ Game::~Game()
 void Game::Draw()
 {
     player.Draw();
+    gamebooth.Draw({20, 40});
 }
 
 void Game::HandleInput()
@@ -49,5 +50,13 @@ void Game::HandleInput()
     else if(IsKeyDown(KEY_DOWN) && IsKeyDown(KEY_LEFT))
     {
         player.MoveDownLeft();
+    }
+}
+
+void CheckCollisionWithBoth()
+{
+    if(Player.Getposition() == Gamebooth.position.x)
+    {
+
     }
 }
