@@ -27,7 +27,7 @@ int main()
             ClearBackground(grey);
 
             game.Draw();
-            
+            game.CheckCollisionWithBoth();
             // laser.Draw();
         
         EndDrawing();

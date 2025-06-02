@@ -4,9 +4,11 @@
 class Player
 {
 private:
- Texture2D image;
- Vector2 position;
+ 
+ 
 public:
+Vector2 position;
+Texture2D image;
   Player(/* args */);
   ~Player();
   void Draw();
