@@ -2,23 +2,23 @@
 #include <iostream>
 
 
-Game::Game()
+MainGame::MainGame()
 {
 
 }
 
-Game::~Game()
+MainGame::~MainGame()
 {
 
 }
 
-void Game::Draw()
+void MainGame::Draw()
 {
     player.Draw();
     gamebooth.Draw({20, 40});
 }
 
-void Game::HandleInput()
+void MainGame::HandleInput()
 {
     if(IsKeyDown(KEY_LEFT))
     {
@@ -54,7 +54,7 @@ void Game::HandleInput()
     }
 }
 
-void Game::CheckCollisionWithBoth()
+void MainGame::CheckCollisionWithBoth()
 {
 
     // booth edges
@@ -80,7 +80,7 @@ void Game::CheckCollisionWithBoth()
 
     if(collision_with_axe && IsKeyDown(KEY_E))
     {
-        snakegame.Draw();
+        // SnakeMain();
     }
     
 }

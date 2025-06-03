@@ -4,15 +4,16 @@
 #include "gamebooth.hpp"
 #include "Snake-mini-game.cpp"
 
-class Game
+class MainGame
 {
 private:
   Player player;
   Gamebooth gamebooth;
-  SnakeGame snakegame;
+  
 public:
-  Game();
-  ~Game();
+  MainGame();
+  ~MainGame();
+  
   void Draw();
   void Update();
   void HandleInput();

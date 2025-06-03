@@ -4,123 +4,12 @@
 #include <raymath.h>
 #include "button.hpp"
 
-using namespace std;
 
-static bool allowMove = false;
-Color green = {173, 204, 96, 255};
-Color darkGreen = {43, 51, 24, 255};
 
-int cellSize = 30;
-int cellCount = 25;
-int offset = 75;
 
-double lastUpdateTime = 0;
 
-bool ElementInDeque(Vector2 element, deque<Vector2> deque)
-{
-    for (unsigned int i = 0; i < deque.size(); i++)
-    {
-        if (Vector2Equals(deque[i], element))
-        {
-            return true;
-        }
-    }
-    return false;
-}
 
-bool EventTriggered(double interval)
-{
-    double currentTime = GetTime();
-    if (currentTime - lastUpdateTime >= interval)
-    {
-        lastUpdateTime = currentTime;
-        return true;
-    }
-    return false;
-}
-
-class Snake
-{
-public:
-    deque<Vector2> body = {Vector2{6, 9}, Vector2{5, 9}, Vector2{4, 9}};
-    Vector2 direction = {1, 0};
-    bool addSegment = false;
-
-    void Draw()
-    {
-        for (unsigned int i = 0; i < body.size(); i++)
-        {
-            float x = body[i].x;
-            float y = body[i].y;
-            Rectangle segment = Rectangle{offset + x * cellSize, offset + y * cellSize, (float)cellSize, (float)cellSize};
-            DrawRectangleRounded(segment, 0.5, 6, darkGreen);
-        }
-    }
-
-    void Update()
-    {
-        body.push_front(Vector2Add(body[0], direction));
-        if (addSegment == true)
-        {
-            addSegment = false;
-        }
-        else
-        {
-            body.pop_back();
-        }
-    }
-
-    void Reset()
-    {
-        body = {Vector2{6, 9}, Vector2{5, 9}, Vector2{4, 9}};
-        direction = {1, 0};
-    }
-};
-
-class Food
-{
-
-public:
-    Vector2 position;
-    Texture2D texture;
-
-    Food(deque<Vector2> snakeBody)
-    {
-        Image image = LoadImage("Graphics/food.png");
-        texture = LoadTextureFromImage(image);
-        UnloadImage(image);
-        position = GenerateRandomPos(snakeBody);
-    }
-
-    ~Food()
-    {
-        UnloadTexture(texture);
-    }
-
-    void Draw()
-    {
-        DrawTexture(texture, offset + position.x * cellSize, offset + position.y * cellSize, WHITE);
-    }
-
-    Vector2 GenerateRandomCell()
-    {
-        float x = GetRandomValue(0, cellCount - 1);
-        float y = GetRandomValue(0, cellCount - 1);
-        return Vector2{x, y};
-    }
-
-    Vector2 GenerateRandomPos(deque<Vector2> snakeBody)
-    {
-        Vector2 position = GenerateRandomCell();
-        while (ElementInDeque(position, snakeBody))
-        {
-            position = GenerateRandomCell();
-        }
-        return position;
-    }
-};
-
-class SnakeGame
+class Game
 {
 public:
     Snake snake = Snake();
@@ -130,14 +19,14 @@ public:
     Sound eatSound;
     Sound wallSound;
 
-    SnakeGame()
+    Game()
     {
         InitAudioDevice();
         eatSound = LoadSound("Sounds/eat.mp3");
         wallSound = LoadSound("Sounds/wall.mp3");
     }
 
-    ~SnakeGame()
+    ~Game()
     {
         UnloadSound(eatSound);
         UnloadSound(wallSound);
@@ -204,13 +93,13 @@ public:
     }
 };
 
-int main()
+int SnakeMain()
 {
     
     InitWindow(2 * offset + cellSize * cellCount, 2 * offset + cellSize * cellCount, "Retro Snake");
     SetTargetFPS(60);
 
-    SnakeGame game = SnakeGame();
+    Game game = Game();
 
     // Texture2D background = LoadTexture("Graphics/background.png");
     // background.width = offset * 2 + cellSize * cellCount;
