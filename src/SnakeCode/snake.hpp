@@ -14,4 +14,8 @@ public:
   void Draw();
   void Update();
   void Reset();
+
+  int cellSize = 30;
+  int cellCount = 25;
+  int offset = 75;
 };
