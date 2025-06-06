@@ -14,7 +14,7 @@ Game::Game()
 
 Game::~Game()
 {
-
+ 
     // Snake
     UnloadSound(eatSound);
     UnloadSound(wallSound);
